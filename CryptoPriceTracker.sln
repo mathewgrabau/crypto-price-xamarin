@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.809.7
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CryptoPriceTracker", "CryptoPriceTracker\CryptoPriceTracker.csproj", "{302F803F-DC1D-43AE-B2D1-70983705D5BC}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|iPhoneSimulator = Debug|iPhoneSimulator
+		Release|iPhoneSimulator = Release|iPhoneSimulator
+		Debug|iPhone = Debug|iPhone
+		Release|iPhone = Release|iPhone
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{302F803F-DC1D-43AE-B2D1-70983705D5BC}.Debug|iPhoneSimulator.ActiveCfg = Debug|iPhoneSimulator
+		{302F803F-DC1D-43AE-B2D1-70983705D5BC}.Debug|iPhoneSimulator.Build.0 = Debug|iPhoneSimulator
+		{302F803F-DC1D-43AE-B2D1-70983705D5BC}.Release|iPhoneSimulator.ActiveCfg = Release|iPhoneSimulator
+		{302F803F-DC1D-43AE-B2D1-70983705D5BC}.Release|iPhoneSimulator.Build.0 = Release|iPhoneSimulator
+		{302F803F-DC1D-43AE-B2D1-70983705D5BC}.Debug|iPhone.ActiveCfg = Debug|iPhone
+		{302F803F-DC1D-43AE-B2D1-70983705D5BC}.Debug|iPhone.Build.0 = Debug|iPhone
+		{302F803F-DC1D-43AE-B2D1-70983705D5BC}.Release|iPhone.ActiveCfg = Release|iPhone
+		{302F803F-DC1D-43AE-B2D1-70983705D5BC}.Release|iPhone.Build.0 = Release|iPhone
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {F3D14A5A-DBF3-416D-96D5-EAF74CB72FA1}
+	EndGlobalSection
+EndGlobal
