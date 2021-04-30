@@ -9,8 +9,8 @@ using System.CodeDom.Compiler;
 
 namespace CryptoPriceTracker
 {
-	[Register ("ViewController")]
-	partial class ViewController
+	[Register ("CryptoPriceViewController")]
+	partial class CryptoPriceViewController
 	{
 		[Outlet]
 		UIKit.UILabel priceLabel { get; set; }

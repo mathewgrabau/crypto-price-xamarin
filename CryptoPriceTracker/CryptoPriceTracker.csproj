@@ -113,6 +113,12 @@
         <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\Icon60.png">
             <Visible>false</Visible>
         </ImageAsset>
+        <ImageAsset Include="Assets.xcassets\btc.imageset\btc%403x.png" />
+        <ImageAsset Include="Assets.xcassets\btc.imageset\btc%402x.png" />
+        <ImageAsset Include="Assets.xcassets\btc.imageset\btc.png" />
+        <ImageAsset Include="Assets.xcassets\btc.imageset\Contents.json">
+          <Visible>False</Visible>
+        </ImageAsset>
     </ItemGroup>
     <ItemGroup>
         <Folder Include="Resources\" />
@@ -132,6 +138,10 @@
         <Compile Include="ViewController.cs" />
         <Compile Include="ViewController.designer.cs">
             <DependentUpon>ViewController.cs</DependentUpon>
+        </Compile>
+        <Compile Include="CryptoPriceViewController.cs" />
+        <Compile Include="CryptoPriceViewController.designer.cs">
+          <DependentUpon>CryptoPriceViewController.cs</DependentUpon>
         </Compile>
     </ItemGroup>
     <Import Project="$(MSBuildExtensionsPath)\Xamarin\iOS\Xamarin.iOS.CSharp.targets" />
