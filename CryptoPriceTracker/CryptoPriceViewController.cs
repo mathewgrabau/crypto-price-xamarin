@@ -11,11 +11,37 @@ namespace CryptoPriceTracker
 	{
 		public CryptoPriceViewController (IntPtr handle) : base (handle)
 		{
-		}
+		}                               
 
         public override void ViewDidLoad()
         {
             base.ViewDidLoad();
+
+            // Using Apple native API for now
+            var apiUrl = new NSUrl("https://min-api.cryptocompare.com/data/price?fsym=BTC&tsyms=USD,JPY,EUR");
+           
+            NSUrlSessionDataTask dataTask = NSUrlSession.SharedSession.CreateDataTask(apiUrl,
+                new NSUrlSessionResponse((/*NSData */data, /* NSUrlResponse */ response, /* NSError */ error) => {
+                    Console.WriteLine("DataTask completed");
+                    if (response is NSHttpUrlResponse httpResponse)
+                    {
+                        if (httpResponse.StatusCode == 200)
+                        {
+                            Console.WriteLine(data.ToString());
+                        }
+                        else
+                        {
+                            Console.Error.WriteLine($"Bad response code: {httpResponse.StatusCode}");
+                        }
+                    }
+                    else
+                    {
+                        Console.Error.WriteLine("Unknown response type");
+                    }
+                }));
+
+            // Actually execute the task.
+            dataTask.Resume();
         }
     }
 }
