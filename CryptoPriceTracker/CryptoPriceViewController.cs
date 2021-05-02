@@ -18,25 +18,58 @@ namespace CryptoPriceTracker
             base.ViewDidLoad();
 
             // Using Apple native API for now
-            var apiUrl = new NSUrl("https://min-api.cryptocompare.com/data/price?fsym=BTC&tsyms=USD,JPY,EUR");
+            var apiUrl = new NSUrl("https://min-api.cryptocompare.com/data/price?fsym=BTC&tsyms=USD,JPY,EUR,CAD");
            
             NSUrlSessionDataTask dataTask = NSUrlSession.SharedSession.CreateDataTask(apiUrl,
                 new NSUrlSessionResponse((/*NSData */data, /* NSUrlResponse */ response, /* NSError */ error) => {
                     Console.WriteLine("DataTask completed");
-                    if (response is NSHttpUrlResponse httpResponse)
+                    if (error == null)
                     {
-                        if (httpResponse.StatusCode == 200)
+                        if (response is NSHttpUrlResponse httpResponse)
                         {
-                            Console.WriteLine(data.ToString());
+                            if (httpResponse.StatusCode == 200 && data != null)
+                            {
+                                try
+                                {
+                                    // Need to decode the data now
+                                    // https://docs.microsoft.com/en-us/dotnet/api/Foundation.NSJsonSerialization?view=xamarin-ios-sdk-12
+                                    NSError parsingError;
+                                    var json = NSJsonSerialization.Deserialize(data, default(NSJsonReadingOptions), out parsingError);
+                                    if (json is NSDictionary jsonDict)
+                                    {
+                                        if (jsonDict.ContainsKey(NSString.FromObject("CAD")))
+                                        {
+                                            if (jsonDict["CAD"] is NSNumber cadNumber)
+                                            {
+                                                Console.WriteLine(cadNumber.DoubleValue);
+                                            }
+
+                                            if (jsonDict["EUR"] is NSNumber eurNumber)
+                                            {
+                                                Console.WriteLine(eurNumber.DoubleValue);
+                                            }
+                                        }
+                                    }
+
+                                }
+                                catch (Exception e)
+                                {
+                                    Console.Error.WriteLine(e.ToString());
+                                }
+                            }
+                            else
+                            {
+                                Console.Error.WriteLine($"Bad response code: {httpResponse.StatusCode}");
+                            }
                         }
                         else
                         {
-                            Console.Error.WriteLine($"Bad response code: {httpResponse.StatusCode}");
+                            Console.Error.WriteLine("Unknown response type");
                         }
                     }
                     else
                     {
-                        Console.Error.WriteLine("Unknown response type");
+                        Console.Error.WriteLine(error.ToString());
                     }
                 }));
 
