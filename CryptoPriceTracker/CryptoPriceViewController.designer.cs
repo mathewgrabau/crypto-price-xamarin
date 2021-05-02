@@ -13,13 +13,29 @@ namespace CryptoPriceTracker
 	partial class CryptoPriceViewController
 	{
 		[Outlet]
+		UIKit.UILabel firstCurrencyLabel { get; set; }
+
+		[Outlet]
 		UIKit.UILabel priceLabel { get; set; }
+
+		[Outlet]
+		UIKit.UILabel secondCurrencyLabel { get; set; }
 		
 		void ReleaseDesignerOutlets ()
 		{
 			if (priceLabel != null) {
 				priceLabel.Dispose ();
 				priceLabel = null;
+			}
+
+			if (firstCurrencyLabel != null) {
+				firstCurrencyLabel.Dispose ();
+				firstCurrencyLabel = null;
+			}
+
+			if (secondCurrencyLabel != null) {
+				secondCurrencyLabel.Dispose ();
+				secondCurrencyLabel = null;
 			}
 		}
 	}
