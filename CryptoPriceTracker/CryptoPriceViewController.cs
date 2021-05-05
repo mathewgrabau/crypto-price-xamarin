@@ -9,6 +9,10 @@ namespace CryptoPriceTracker
 {
 	public partial class CryptoPriceViewController : UIViewController
 	{
+        const string mainPriceKey = "first-price";
+        const string firstPriceKey = "second-price";
+        const string secondPriceKey = "third-price";
+
 		public CryptoPriceViewController (IntPtr handle) : base (handle)
 		{
 		}                               
@@ -16,6 +20,28 @@ namespace CryptoPriceTracker
         public override void ViewDidLoad()
         {
             base.ViewDidLoad();
+
+            priceLabel.Text = "Loading...";
+            firstCurrencyLabel.Text = string.Empty;
+            secondCurrencyLabel.Text = string.Empty;
+
+            string text = NSUserDefaults.StandardUserDefaults.StringForKey(mainPriceKey);
+            if (!string.IsNullOrEmpty(text))
+            {
+                priceLabel.Text = text;
+            }
+
+            text = NSUserDefaults.StandardUserDefaults.StringForKey(firstPriceKey);
+            if (!string.IsNullOrEmpty(text))
+            {
+                firstCurrencyLabel.Text = text;
+            }
+
+            text = NSUserDefaults.StandardUserDefaults.StringForKey(secondPriceKey);
+            if (!string.IsNullOrEmpty(text))
+            {
+                secondCurrencyLabel.Text = text;
+            }
 
             UpdatePrices();
         }
@@ -59,6 +85,8 @@ namespace CryptoPriceTracker
                                                 {
                                                     priceLabel.Text = $"${usdNumber.DoubleValue:0.00}";
                                                     priceLabel.TextColor = UIColor.Black;
+
+                                                    NSUserDefaults.StandardUserDefaults.SetString(priceLabel.Text + "~", mainPriceKey);
                                                 }
                                             }
                                             catch (Exception e)
@@ -69,11 +97,12 @@ namespace CryptoPriceTracker
 
                                             try
                                             {
-
                                                 if (jsonDict.ContainsKey(NSString.FromObject("CAD")) && jsonDict["CAD"] is NSNumber cadNumber)
                                                 {
                                                     firstCurrencyLabel.Text = $"CAD: ${cadNumber.DoubleValue:0.00}";
                                                     firstCurrencyLabel.TextColor = UIColor.Black;
+
+                                                    NSUserDefaults.StandardUserDefaults.SetString(firstCurrencyLabel.Text + "~", firstPriceKey);
                                                 }
                                             }
                                             catch (Exception ex)
@@ -88,6 +117,8 @@ namespace CryptoPriceTracker
                                                 {
                                                     secondCurrencyLabel.Text = $"EUR: \u20AC{eurNumber.DoubleValue:0.00}";
                                                     secondCurrencyLabel.TextColor = UIColor.Black;
+
+                                                    NSUserDefaults.StandardUserDefaults.SetString(secondCurrencyLabel.Text + "~", secondPriceKey);
                                                 }
                                             }
                                             catch (Exception ex)
