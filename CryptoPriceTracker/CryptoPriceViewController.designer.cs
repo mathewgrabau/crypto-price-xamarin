@@ -20,6 +20,9 @@ namespace CryptoPriceTracker
 
 		[Outlet]
 		UIKit.UILabel secondCurrencyLabel { get; set; }
+
+		[Action ("refreshTapped:")]
+		partial void refreshTapped (Foundation.NSObject sender);
 		
 		void ReleaseDesignerOutlets ()
 		{

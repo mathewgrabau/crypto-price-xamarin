@@ -17,9 +17,22 @@ namespace CryptoPriceTracker
         {
             base.ViewDidLoad();
 
+            UpdatePrices();
+        }
+
+        partial void refreshTapped(NSObject sender)
+        {
+            UpdatePrices();
+        }
+
+        /// <summary>
+        /// Implements the number of it 
+        /// </summary>
+        void UpdatePrices()
+        {
             // Using Apple native API for now
             var apiUrl = new NSUrl("https://min-api.cryptocompare.com/data/price?fsym=BTC&tsyms=USD,JPY,EUR,CAD");
-           
+
             NSUrlSessionDataTask dataTask = NSUrlSession.SharedSession.CreateDataTask(apiUrl,
                 new NSUrlSessionResponse((/*NSData */data, /* NSUrlResponse */ response, /* NSError */ error) => {
                     Console.WriteLine("DataTask completed");

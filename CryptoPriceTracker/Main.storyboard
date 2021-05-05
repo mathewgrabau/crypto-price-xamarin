@@ -62,7 +62,11 @@
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Bitcoin" id="FtJ-dY-qXL">
-                        <barButtonItem key="rightBarButtonItem" systemItem="refresh" id="Ef4-FG-BBL"/>
+                        <barButtonItem key="rightBarButtonItem" systemItem="refresh" id="Ef4-FG-BBL">
+                            <connections>
+                                <action selector="refreshTapped:" destination="BYZ-38-t0r" id="LF4-lH-SJ8"/>
+                            </connections>
+                        </barButtonItem>
                     </navigationItem>
                     <connections>
                         <outlet property="firstCurrencyLabel" destination="VY7-3e-wkA" id="KnZ-Fh-PzG"/>
